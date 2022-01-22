@@ -57,6 +57,7 @@ class RaffleComponent extends Component
 
     public function selectWinner()
     {
+        $this->cancel();
         $winner = $this->raffle->users->random(1);
         if ($this->raffle->winners->contains($winner[0]->id)) {
             $this->selectWinner();

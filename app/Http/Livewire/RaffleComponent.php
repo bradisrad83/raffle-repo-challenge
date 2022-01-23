@@ -18,6 +18,8 @@ class RaffleComponent extends Component
         'phone_number'  => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
     ];
 
+    protected $listeners = ['refreshComponent' => 'refresh'];
+
     public function mount(Raffle $raffle)
     {
         $this->raffle = $raffle;
@@ -64,5 +66,10 @@ class RaffleComponent extends Component
         }
         $this->raffle->winners()->attach($winner);
         $this->raffle = $this->raffle->fresh();
+    }
+
+    public function refresh()
+    {
+        $this->raffle->fresh();
     }
 }
